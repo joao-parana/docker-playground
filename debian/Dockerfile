@@ -1,4 +1,6 @@
 FROM debian
+# 
+MAINTAINER João Antonio Ferreira "joao.parana@gmail.com"
 
 RUN apt-get update && apt-get install -y \
     aufs-tools \
