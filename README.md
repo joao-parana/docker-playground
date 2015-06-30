@@ -8,9 +8,6 @@ This **Dockerfile** is a [trusted build](https://registry.hub.docker.com/u/paran
 Play with Debian running as a command
 
 	docker pull parana/docker-playground
-	docker run parana/docker-playground 
+	docker run parana/docker-playground ls -lA /
 	docker run parana/docker-playground help
-	docker run parana/docker-playground 
-	docker run parana/docker-playground 
-	docker run parana/docker-playground 
-	docker run parana/docker-playground 
+	docker run parana/docker-playground apt-get update 
