@@ -54,7 +54,16 @@ We can use Docker Compose to start a container with eth0 on Bridge mode
 
 For this you need save this contêiner as an new image and create a docker-compose.yml file.
 
+Others Commands 
 
+    docker version 
+    docker info
+    docker inspect
+    docker save
+    docker load
+    
+    
+    
 
 
 
