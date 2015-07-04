@@ -23,10 +23,14 @@ MAINTAINER João Antonio Ferreira "joao.parana@gmail.com"
 RUN mkdir /app 
 ADD . /app/ 
 WORKDIR /app 
-RUN go build -o main . 
+# RUN go build -o main . 
+ENV CGO_ENABLED   0 
+ENV GOOS          linux 
+RUN rm -rf /linux-solutions-debian-64 && \
+    go build -a -installsuffix cgo -o main . &&  \
+    cp main /linux-solutions-debian-64
+
+ENV blog_addr   http://64.111.112.150
 CMD ["/app/main"]
 
 # Baseado no post https://blog.codeship.com/building-minimal-docker-containers-for-go-applications/
-
-# FROM scratch
-# 
