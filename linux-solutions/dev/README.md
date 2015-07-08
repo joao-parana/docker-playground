@@ -17,6 +17,12 @@ Inicie o Contêiner com shell bash para copiar o binário gerado
     cp /linux-solutions-debian-64 /tmp/bin-debian/
     exit
 
+Inicie o Contêiner com shell bash para compartilhar diretório de fontes GO
+
+    docker run --rm -i -v `pwd`/src:/root/src  linux-solutions:dev  bash 
+    cd /root/src
+    go build -a -installsuffix cgo -o main .
+
 No seu host execute:
 
     cp bin-debian/linux-solutions-debian-64 ../prod/
