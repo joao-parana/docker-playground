@@ -1,0 +1,2 @@
+go build -a -installsuffix cgo -o main . 
+echo '••• Compilou os fontes •••'
