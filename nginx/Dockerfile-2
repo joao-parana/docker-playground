@@ -1,0 +1,33 @@
+FROM golang:1.4.2
+
+MAINTAINER João Antonio Ferreira "joao.parana@gmail.com"
+
+ENV REFRESHED_AT 2015-07-13
+
+# Preparando ambiente golang
+RUN groupadd golang && \
+    useradd -m -c "Usuario para Desenvolvimento em GO" -g golang golang
+ENV GOPATH /home/golang
+ENV PATH $GOPATH/bin:$PATH
+
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl http://nginx.org/keys/nginx_signing.key | apt-key add - && \
+    echo 'deb http://nginx.org/packages/debian/ jessie nginx' > /etc/apt/sources.list.d/nginx.list && \
+    apt-get -y -q install nginx && \
+    mkdir -p /var/www/html/site
+
+VOLUME ["/var/www/html/site"]
+
+ADD conf/global.conf /etc/nginx/conf.d/
+ADD conf/nginx.conf /etc/nginx/
+
+# USER golang
+RUN go get -u -v github.com/spf13/hugo
+RUN mkdir -p /home/golang/src
+ADD src/go/ /home/golang/src/
+
+# USER root
+EXPOSE 80
+CMD [ "nginx" ]
+# docker built -t nginx_2 -f Dockerfile-2 .
