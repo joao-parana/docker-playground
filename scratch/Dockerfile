@@ -1,0 +1,3 @@
+FROM scratch
+
+ENV DO_ZERO TRUE
